@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+  
+  <script src="./roslib.js"></script>
+</head>
+
+<body>
+    <h1></h1>
+    <div id="modal" class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+            Simple roslib Example (talker)
+            </div>
+        
+            <div class="panel-body">
+            <p>Run the following commands in the terminal.</p>
+            <ul>
+            <li><tt>rostopic echo /led</tt></li>
+            </ul>
+            <p> If it not working well , check the JavaScript console for the
+            output or Shift+F5 to reload without Cache.</p>
+            <div>
+                <input type="text" id="addr" name="addr" ><label for="addr">Server Address</label><br>
+                <input type="text" id="port" name="port" ><label for="port">Server port</label><br>
+            </div>
+            <button type="button" id="connectButton" class="btn btn-default" autocomplete="off" onclick="disabled=true;">Push this button to connect ROS</button>
+            
+            <div>
+                <input type="radio" id="led_on" name="led_data" value=1 /><label for="led_on">LED On</label>
+                <input type="radio" id="led_off" name="led_data" value=0 /><label for="led_off">LED sOff</label>
+            </div>
+            <button type="button" id="sendButton" class="btn btn-default" autocomplete="off" >Push this button to publish /led topic</button>
+        </div>
+    </div>
+    <script>
+      var ledData = new ROSLIB.Message({
+          data: 0
+      });
+
+      let ledRadio = document.getElementsByName('led_data');
+      let len = ledRadio.length;
+
+      var led;
+
+      // EventHandler for connectButton is pushed
+      $(document).ready(function () {
+         $("#connectButton").click(function() {
+
+           let addr = document.getElementsByName('addr')[0].value;
+           let port = document.getElementsByName('port')[0].value;
+           let server_addr = 'ws://' + addr + ':' + port;
+           console.log(server_addr);
+           
+           // Connecting to ROS
+           // -----------------
+           var ros = new ROSLIB.Ros();
+
+           // Create a connection to the rosbridge WebSocket server.
+           ros.connect(server_addr);
+
+           //Subscribing to a Topic
+           //----------------------
+           // We first create a Topic object with details of the topic's name
+           // and message type. Note that we can call publish or subscribe on the same topic object.
+           led = new ROSLIB.Topic({
+               ros : ros,
+               name : '/led',
+               messageType : 'std_msgs/Int16'
+           });
+           $(this).button('reset');
+         });
+
+         // EventHandler for sendButton is pushed
+         $("#sendButton").click(function() {
+           let checkValue = 0;
+
+           for (let i = 0; i < len; i++){
+              if (ledRadio.item(i).checked){
+                checkValue = ledRadio.item(i).value;
+              }
+           }
+
+           ledData.data = parseInt(checkValue)
+           led.publish(ledData);
+           console.log("publishing..." + ledData.data);
+           $(this).button('reset');
+         });
+      });
+    </script>
+
+</body>
+</html>

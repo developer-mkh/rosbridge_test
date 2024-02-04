@@ -1,0 +1,10 @@
+# CMake generated Testfile for 
+# Source directory: /home/mkh/catkin_ws/src/roswww
+# Build directory: /home/mkh/catkin_ws/build/roswww
+# 
+# This file includes the relevant testing commands required for 
+# testing this directory and lists subdirectories to be tested as well.
+add_test(_ctest_roswww_rostest_test_launch.test "/home/mkh/catkin_ws/build/catkin_generated/env_cached.sh" "/usr/bin/python3" "/opt/ros/noetic/share/catkin/cmake/test/run_tests.py" "/home/mkh/catkin_ws/build/test_results/roswww/rostest-test_launch.xml" "--return-code" "/usr/bin/python3 /opt/ros/noetic/share/rostest/cmake/../../../bin/rostest --pkgdir=/home/mkh/catkin_ws/src/roswww --package=roswww --results-filename test_launch.xml --results-base-dir \"/home/mkh/catkin_ws/build/test_results\" /home/mkh/catkin_ws/src/roswww/test/launch.test ")
+set_tests_properties(_ctest_roswww_rostest_test_launch.test PROPERTIES  _BACKTRACE_TRIPLES "/opt/ros/noetic/share/catkin/cmake/test/tests.cmake;160;add_test;/opt/ros/noetic/share/rostest/cmake/rostest-extras.cmake;52;catkin_run_tests_target;/home/mkh/catkin_ws/src/roswww/CMakeLists.txt;22;add_rostest;/home/mkh/catkin_ws/src/roswww/CMakeLists.txt;0;")
+add_test(_ctest_roswww_rostest_test_single.test "/home/mkh/catkin_ws/build/catkin_generated/env_cached.sh" "/usr/bin/python3" "/opt/ros/noetic/share/catkin/cmake/test/run_tests.py" "/home/mkh/catkin_ws/build/test_results/roswww/rostest-test_single.xml" "--return-code" "/usr/bin/python3 /opt/ros/noetic/share/rostest/cmake/../../../bin/rostest --pkgdir=/home/mkh/catkin_ws/src/roswww --package=roswww --results-filename test_single.xml --results-base-dir \"/home/mkh/catkin_ws/build/test_results\" /home/mkh/catkin_ws/src/roswww/test/single.test ")
+set_tests_properties(_ctest_roswww_rostest_test_single.test PROPERTIES  _BACKTRACE_TRIPLES "/opt/ros/noetic/share/catkin/cmake/test/tests.cmake;160;add_test;/opt/ros/noetic/share/rostest/cmake/rostest-extras.cmake;52;catkin_run_tests_target;/home/mkh/catkin_ws/src/roswww/CMakeLists.txt;23;add_rostest;/home/mkh/catkin_ws/src/roswww/CMakeLists.txt;0;")
