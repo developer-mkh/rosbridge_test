@@ -16,8 +16,8 @@ ROSノード。/ledをsubscribeし、RaspberryPiのGPIOに値を書き込む（L
 
 # 操作方法
 1. RaspberryPi上の操作
-  1. rosbridgeを起動
-  2. ledを起動
+   1. rosbridgeを起動
+   2. ledを起動
 1. PC上の操作
    1. clientのHTMLをPCのブラウザで開く
    2. Server AddressにRaspberryPiのIPアドレス（ホスト名（FQDN）でも良い）、Server portにrosbridgeのリッスンポートを入力
